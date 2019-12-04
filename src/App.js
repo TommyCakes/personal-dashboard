@@ -26,11 +26,11 @@ function App() {
         </div>      
                                
         {/* Second Row */}        
-        <div className="inner-container">
+        <div className="inner-container long-inner">
           <div className="child child-long">
           <p>Twitch Search</p>
           </div>            
-          <div style={gamePlaceholder} className="wide">
+          <div style={gamePlaceholder} className="wide wide-tv">
           
           </div>
         </div> 
