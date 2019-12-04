@@ -4,6 +4,7 @@ $dark-blue: #374E58;
 $green: #297169;
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,400i,500,700,900&display=swap');
+@import 'components/dateTime';
 
 body {
   text-align: center;
@@ -43,7 +44,6 @@ body {
   .tall {
     height: 100%;
     width:25%;
-    // flex-shrink: 1;
     background: $dark-grey;
   }
   .wide {
@@ -59,10 +59,11 @@ body {
   width: 75%;
   .child {
     width: 25%;
-    background: steelblue;  
+    background: $dark-grey; 
   }
   .child-long {
     height: 50vh;
+    background: steelblue; 
   }
   .wide {
     width: 75%;

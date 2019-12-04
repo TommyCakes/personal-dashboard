@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import gameImg from '../images/games.png';
+import DateTime from './DateTime';
 
 const gamePlaceholder = {
     background: `url(${gameImg})`,
@@ -27,7 +28,7 @@ export default class Main extends Component {
                 <p>Music</p>
                 </div>
                 <div className="child">
-                    <p>Date / Time</p>
+                    <DateTime />
                 </div>  
                 </div>      
                                     

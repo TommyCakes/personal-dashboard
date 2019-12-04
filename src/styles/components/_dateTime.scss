@@ -1,0 +1,20 @@
+.time {
+    text-align:center;
+    color:white;
+    letter-spacing:3px;
+    font-weight:400;
+    font-size:0.65em;
+    width: 110px;
+    margin: 16px auto 16px;
+}
+
+.date {
+    text-align:center;
+    color:white;
+    font-size: 0.5em;
+    font-weight:100;
+    margin-bottom:-20px;
+    span {
+        color:#AA474D;
+    }
+}
