@@ -40,13 +40,12 @@ export default class Music extends React.Component {
 
   render() {
     return (
-      <div>
-        {/* <p>{this.state.artist}</p> */}
-        {/* <TrackInfo image={this.state.image} 
+      <div>      
+        <TrackInfo image={this.state.image} 
           artist={this.state.artist} 
           name={this.state.name} 
           user={this.state.user}
-        />                     */}
+        />                    
       </div> 
     );
   }
