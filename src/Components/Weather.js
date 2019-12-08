@@ -3,6 +3,19 @@ import request from 'superagent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudMoonRain } from '@fortawesome/free-solid-svg-icons';
 
+const temperatureMessages = {
+    hot: {
+        30: "absolute scorcher",
+        20: "lovely and hot!",
+    },
+    cold: {
+        15: "mild one!",
+        7: "little cold!",
+        4: "abit chilly",
+        0: "freeeezing",
+    }
+}
+
 export default class Weather extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +31,7 @@ export default class Weather extends Component {
 
   getWeatherForLocation() {
     let apiKey = "8955ed88a3c211ccce8222a9866954f3";
-    let city = "Rio De Janeiro";
+    let city = "London";
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
     request.get(url, (err, res) => {        
       console.log(res.body);       
@@ -36,6 +49,38 @@ export default class Weather extends Component {
     return this.state.temp >= 18 ? 'hot-temp' : 'cold-temp';
   }
 
+  getAllMessages = () => {    
+    let { hot, cold } = temperatureMessages;
+    let { temp } = this.state;
+    
+        if (temp >= 30) {  
+            return hot[30];
+        }      
+        else if (temp >= 20) {
+            return hot[20];            
+        }             
+        else if (temp <= 15) {
+            return cold[15];            
+        }             
+        else if (temp <= 7) {
+            return cold[7];
+        }                         
+        else if (temp <= 4) {
+            return cold[4];            
+        }             
+        else if (temp <= 0) {
+            return cold[0];            
+        }                       
+  }
+
+  setTemperatureMessage = () => {  
+    return this.getAllMessages();
+  }    
+
+  setTimeOfDay = () => {
+
+  }
+
   render() {
 
     let icon = '';
@@ -43,6 +88,8 @@ export default class Weather extends Component {
     if (this.state.weatherType == "Drizzle" || this.state.weatherType == "Rain") {
     
     }
+
+
 
     return (
       <div className="weather">
@@ -54,6 +101,10 @@ export default class Weather extends Component {
         {this.state.temp} <span className="metric">℃</span>
         </p>
         
+        <hr/>
+        <p className="weather-temperature">            
+            It's gonna be a <span className={this.setHotOrColdTemperature()}>{this.setTemperatureMessage()}</span>
+        </p>
         <hr/>
         <p className='weather-description'>Looks like there is {this.state.weather} today</p>
 
