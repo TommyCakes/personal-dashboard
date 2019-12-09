@@ -33,7 +33,7 @@ export default class Weather extends Component {
 
   getWeatherForLocation() {
     let apiKey = "8955ed88a3c211ccce8222a9866954f3";
-    let city = "Mexico City";
+    let city = "Faro";
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
     request.get(url, (err, res) => {        
       console.log(res.body);       
@@ -62,13 +62,13 @@ export default class Weather extends Component {
         else if (temp >= 20) {
             return hot[20];            
         }             
-        else if (temp <= 15) {
+        else if (temp >= 15) {
             return cold[15];            
         }             
-        else if (temp <= 7) {
+        else if (temp >= 7) {
             return cold[7];
         }                         
-        else if (temp <= 4) {
+        else if (temp >= 4) {
             return cold[4];            
         }             
         else if (temp <= 0) {
