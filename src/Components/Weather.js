@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import request from 'superagent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudMoonRain } from '@fortawesome/free-solid-svg-icons';
-import flag from '../helpers/countryFlag';
+import getFlag from '../helpers/countryFlag';
+import { symlinkSync } from 'fs';
 
 const temperatureMessages = {
     hot: {
         30: "absolute scorcher",
-        20: "lovely and hot!",
+        20: "lovely and hot",
     },
     cold: {
-        15: "mild one!",
-        7: "little cold!",
+        15: "mild one",
+        7: "little cold",
         4: "abit chilly",
         0: "freeeezing",
     }
@@ -32,16 +33,17 @@ export default class Weather extends Component {
 
   getWeatherForLocation() {
     let apiKey = "8955ed88a3c211ccce8222a9866954f3";
-    let city = "London";
+    let city = "Mexico City";
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
     request.get(url, (err, res) => {        
       console.log(res.body);       
-      let { name, weather, icon, main} = res.body;
+      let { name, weather, icon, main, sys} = res.body;
       this.setState({
         location: name,
         weather: weather[0].description,
         temp: main.temp_max,
         icon: weather[0].main,
+        countryCode: sys.country,
       })                
     });
   }
@@ -82,6 +84,10 @@ export default class Weather extends Component {
 
   }
 
+  getFlagForCountry = () => {
+    return getFlag(this.state.countryCode);
+  }
+
   render() {
 
     let icon = '';
@@ -90,10 +96,9 @@ export default class Weather extends Component {
     
     }
 
-
-
     return (
       <div className="weather">
+        <h1 className="country-flag">{this.getFlagForCountry()}</h1>
         <h1 className="weather-location">
         The weather currently in {this.state.location}
         </h1>
@@ -104,7 +109,7 @@ export default class Weather extends Component {
         
         <hr/>
         <p className="weather-temperature">            
-            It's gonna be a <span className={this.setHotOrColdTemperature()}>{this.setTemperatureMessage()}</span>
+            It's gonna be a <span className={this.setHotOrColdTemperature()}>{this.setTemperatureMessage()}</span> day!
         </p>
         <hr/>
         <p className='weather-description'>Looks like there is {this.state.weather} today</p>

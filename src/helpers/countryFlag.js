@@ -18,6 +18,6 @@ console.log(countryFlagEmoji.get("US"));
 //  emoji: "🇺🇸"
 // }
 
-export default function getFlag() {
-    return "🏴‍☠️";
+export default function countryFlag(country) {
+    return countryFlagEmoji.get(country).emoji;
 }
