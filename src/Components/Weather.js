@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import request from 'superagent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudMoonRain } from '@fortawesome/free-solid-svg-icons';
-import getFlag from '../helpers/countryFlag';
-import { symlinkSync } from 'fs';
+import { getTimeOfDay, getCountryFlag } from '../helpers/helpers';
 
 const temperatureMessages = {
     hot: {
@@ -80,25 +79,18 @@ export default class Weather extends Component {
     return this.getAllMessages();
   }    
 
-  setTimeOfDay = () => {
-
-  }
-
-  getFlagForCountry = () => {
-    return getFlag(this.state.countryCode);
-  }
-
   render() {
 
     let icon = '';
     
     if (this.state.weatherType == "Drizzle" || this.state.weatherType == "Rain") {
-    
     }
 
+    
     return (
-      <div className="weather">
-        <h1 className="country-flag">{this.getFlagForCountry()}</h1>
+      <div className="weather">  
+
+        <h1 className="country-flag">{getCountryFlag(this.state.countryCode)}</h1>
         <h1 className="weather-location">
         The weather currently in {this.state.location}
         </h1>
@@ -109,7 +101,7 @@ export default class Weather extends Component {
         
         <hr/>
         <p className="weather-temperature">            
-            It's gonna be a <span className={this.setHotOrColdTemperature()}>{this.setTemperatureMessage()}</span> day!
+            It's gonna be a <span className={this.setHotOrColdTemperature()}>{this.setTemperatureMessage()}</span> {getTimeOfDay()}
         </p>
         <hr/>
         <p className='weather-description'>Looks like there is {this.state.weather} today</p>
