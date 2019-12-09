@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import request from 'superagent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudMoonRain } from '@fortawesome/free-solid-svg-icons';
+import flag from '../helpers/countryFlag';
 
 const temperatureMessages = {
     hot: {
