@@ -25,15 +25,30 @@ export default class Weather extends Component {
       temp: '',
       weather: '', 
       weatherType: '', 
-      icon: ''     
+      icon: '',
+      longitude: '',
+      latitude: ''
     };
-    this.getWeatherForLocation()
+    this.getLocation()
   }
 
-  getWeatherForLocation() {
-    let apiKey = "8955ed88a3c211ccce8222a9866954f3";
-    let city = "Reykjavík";
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+  async getLocation() {        
+    await navigator.geolocation.getCurrentPosition((pos) => {                  
+      const { longitude, latitude} = pos.coords;
+      this.setState({
+        longitude,
+        latitude,
+      })
+      this.getWeatherForLocation(longitude, latitude)
+    }, () => {
+      console.log('Please try again')
+    });            
+  }
+
+  getWeatherForLocation(longitude, latitude) {
+    
+    let apiKey = "8955ed88a3c211ccce8222a9866954f3";                 
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
     request.get(url, (err, res) => {        
       console.log(res.body);       
       let { name, weather, icon, main, sys} = res.body;
