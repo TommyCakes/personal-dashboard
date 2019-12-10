@@ -11,8 +11,6 @@ const getTimeOfDay = () => {
     return 'today';
 }
 
-
-
 const getCountryFlag = (country) => {
     return countryFlagEmoji.get(country).emoji;
 }

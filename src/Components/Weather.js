@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import request from 'superagent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCloudMoonRain } from '@fortawesome/free-solid-svg-icons';
 import { getTimeOfDay, getCountryFlag } from '../helpers/helpers';
+import weatherData from '../data/weather-data'
 
 const temperatureMessages = {
     hot: {
@@ -32,7 +32,7 @@ export default class Weather extends Component {
 
   getWeatherForLocation() {
     let apiKey = "8955ed88a3c211ccce8222a9866954f3";
-    let city = "Faro";
+    let city = "New York";
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
     request.get(url, (err, res) => {        
       console.log(res.body);       
@@ -41,7 +41,7 @@ export default class Weather extends Component {
         location: name,
         weather: weather[0].description,
         temp: main.temp_max,
-        icon: weather[0].main,
+        icon: weather[0].id,
         countryCode: sys.country,
       })                
     });
@@ -79,14 +79,12 @@ export default class Weather extends Component {
     return this.getAllMessages();
   }    
 
+  getWeatherIcon = () => {
+    return weatherData.ids[this.state.icon];    
+  }
+
   render() {
-
-    let icon = '';
-    
-    if (this.state.weatherType == "Drizzle" || this.state.weatherType == "Rain") {
-    }
-
-    
+ 
     return (
       <div className="weather">  
 
@@ -104,10 +102,10 @@ export default class Weather extends Component {
             It's gonna be a <span className={this.setHotOrColdTemperature()}>{this.setTemperatureMessage()}</span> {getTimeOfDay()}
         </p>
         <hr/>
-        <p className='weather-description'>Looks like there is {this.state.weather} today</p>
+        <p className='weather-description'>Looks like there is {this.state.weather} {getTimeOfDay()}</p>
 
         <div className="weather-logo">
-          <FontAwesomeIcon icon={faCloudMoonRain} size="4x" color="white" /> 
+          <FontAwesomeIcon icon={['fal', this.getWeatherIcon()]} size="3x" color="lightgrey" /> 
         </div>                        
       </div>            
     );
