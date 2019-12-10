@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import gameImg from '../images/games.png';
 import DateTime from './DateTime';
+import Music from './Music/Music';
 
 const gamePlaceholder = {
     background: `url(${gameImg})`,
@@ -25,7 +26,7 @@ export default class Main extends Component {
 
                 <div className="inner-container">          
                 <div className="wide pink">
-                <p>Music</p>
+                    <Music />
                 </div>
                 <div className="child">
                     <DateTime />
