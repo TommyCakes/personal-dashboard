@@ -1,0 +1,53 @@
+.track-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    place-content: space-evenly;
+    width: 75%;
+    height: 190px; 
+    margin-left:10px;
+    p {
+        font-weight: 100;
+        font-size:0.5em;
+        margin: 0;
+        text-align: end;
+    }   
+    img {
+        height: 5em;
+    }
+    .artist-name {
+        font-size: 1em;
+        font-weight: 300;
+    }
+    .username {
+        margin-top: 30px;
+        align-self: flex-end;
+        left: 30%;
+        position: relative;
+        text-align: left;
+        font-size:0.8em;
+    }
+}
+
+.artist-track-info {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    margin-top: 90px;
+}
+
+@media screen and (max-width: 770px) {
+    .track-info {
+        width:100%;
+        height:145px;
+        margin-left:0px;
+        justify-content: center;
+        .artist-name, .artist-track, .username {
+            display: none;
+        } 
+        img {
+            height: 3.5em;
+        }
+    }
+}
