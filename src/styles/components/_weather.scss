@@ -1,0 +1,36 @@
+.weather {
+    text-align:center;
+    color:white;
+    letter-spacing:3px;
+    font-weight:200;
+    font-size:0.5em;
+    width: 120px;
+    margin: 10% auto;
+    h1 {
+        font-size:1.2em;
+        margin-bottom:18px;
+        font-weight:300;
+    }
+    .country-flag {
+        font-size: 2em;
+        margin-bottom: 0px;
+    }
+    .weather-temperature {
+        font-size:0.8em;
+        .metric {
+            color: inherit;
+        } 
+        .cold-span {
+            color: #81b2ed
+        }       
+        .hot-span {
+            color: orange
+        }
+    }
+    .cold-temp {
+        color: #79bad8
+    }
+    .hot-temp {
+        color: rgb(222, 82, 82);
+    }
+}

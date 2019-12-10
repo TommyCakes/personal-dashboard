@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import gameImg from '../images/games.png';
 import DateTime from './DateTime';
+import Weather from './Weather';
 import Music from './Music/Music';
 
 const gamePlaceholder = {
@@ -21,7 +22,7 @@ export default class Main extends Component {
             <div className="main-container">
                 {/* First row */}
                 <div className="tall">
-                <p>Weather</p>
+                    <Weather />
                 </div>
 
                 <div className="inner-container">          
