@@ -3,6 +3,7 @@ import gameImg from '../images/games.png';
 import DateTime from './DateTime';
 import Weather from './Weather';
 import Music from './Music/Music';
+import Twitch from './Twitch/Twitch';
 
 const gamePlaceholder = {
     background: `url(${gameImg})`,
@@ -39,8 +40,8 @@ export default class Main extends Component {
                 <div className="child child-long">
                 <p>Twitch Search</p>
                 </div>            
-                <div style={gamePlaceholder} className="wide wide-tv">
-                
+                <div className="wide wide-tv">
+                    <Twitch />
                 </div>
                 </div> 
 
