@@ -1,35 +1,58 @@
-import React from 'react';
+import React, { Component } from 'react';
 import request from 'superagent';
+import TwitchClient from 'twitch';
 
-export default class Twitch extends React.Component {
+const clientId = 'r9feviwcj6v642he2nymobpfb6ayj1p';
+const clientSecret = "xa7mkfz4q0xgz6c3g93scr7p9jxj9f";
+const accessToken = 'xmyrcj1pa1o7wi87li8k5hfssh3xhl';
+const client = TwitchClient.withClientCredentials(clientId, clientSecret);
+
+export default class Twitch extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',   
+            game: '',   
+            gameId: 0,
+            videoId: 0,
+        }             
+    }
+    
+    componentDidUpdate(prevProps) {   
+        if (this.props.game !== prevProps.game) {
+            this.getGameId();
         }     
+                
     }
 
-    componentWillMount() {
-        this.getTwitchData()
+    async getGameId() {  
+        this.setState({
+            game: this.props.game
+        })              
+        const game = await client.helix.games.getGameByName(this.state.game);
+
+        if (game) {
+            console.log(game);
+            this.setState({ gameId: game.id });  
+        } else {
+            console.log('no game');
+        } 
+        this.getVideoId();              
     }
 
-    getTwitchData = () =>  {
-        var randomGame = "Dark Souls 3";
-        const url = "https://api.twitch.tv/kraken/streams?game=" + randomGame;        
-        request.get(url)
-               .set('Client-ID', 'r9feviwcj6v642he2nymobpfb6ayj1p')
-               .then((res) => {
-               console.log(res.body); 
-               this.setState({
-                //    name: res.body.streams[0].channel.name
-               })
-        });
+    async getVideoId() {       
+        const video = await client.helix.videos.getVideosByGame(this.state.gameId);
+        if (video) {
+            console.log(video); 
+            this.setState({ videoId: video.data[0].id })
+        }        
     }
     
     render() {
         return (
-            <div className="twitch-player">                     
-                <iframe id="video" src="https://player.twitch.tv/?channel=kwitty23&muted=true" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>                                                 
+            <div className="twitch-player"> 
+                { !this.state.videoId ? "" :<iframe id="video" src={`https://player.twitch.tv/?video=${this.state.videoId}&autoplay=true`} frameBorder="0" scrolling="no" allowFullScreen={true}></iframe> }                                               
+                                  
+                
             </div>
         );
     }
