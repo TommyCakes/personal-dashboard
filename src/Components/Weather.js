@@ -104,22 +104,22 @@ export default class Weather extends Component {
       <div className="weather">  
         <h1 className="country-flag">{getCountryFlag(this.state.countryCode)}</h1>
         <h1 className="weather-location">
-        The weather currently in {this.state.location}
+        London {/* {this.state.location}  */}
         </h1>
         <hr/>
         <p className={`weather-temperature  ${this.setHotOrColdTemperature()}`}>
-        {this.state.temp} <span className="metric">℃</span>
+        {/* {this.state.temp}  */}
+        2<span className="metric">℃</span>
         </p>
         
         <hr/>
-        <p className="weather-temperature">            
-            It's gonna be a <span className={this.setHotOrColdTemperature()}>{this.setTemperatureMessage()}</span> {getTimeOfDay()}
-        </p>
-        <hr/>
-        <p className='weather-description'>Looks like there is {this.state.weather} {getTimeOfDay()}</p>
+        <p className='weather-description'> Heavy Snow
+          {/* {this.state.weather} {getTimeOfDay()} */}
+        </p> 
 
         <div className="weather-logo">
-          <FontAwesomeIcon icon={['fal', this.getWeatherIcon()]} size="3x" color="lightgrey" /> 
+          {/* <FontAwesomeIcon icon={['fal', this.getWeatherIcon()]} size="3x" color="lightgrey" />  */}
+          <FontAwesomeIcon icon={['fal', 'cloud-snow']} size="3x" color="lightgrey" /> 
         </div>                        
       </div>            
     );

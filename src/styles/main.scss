@@ -1,13 +1,14 @@
 $blue: #222E53;
-$dark-grey: #25262E;
 $dark-blue: #374E58;
 $green: #297169;
+$dark-grey: #25262E;
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,400i,500,700,900&display=swap');
 @import 'components/dateTime';
 @import 'components/weather';
 @import 'components/music';
 @import 'components/twitch';
+@import 'components/stocks';
 
 body {
   text-align: center;
@@ -52,6 +53,23 @@ body {
   .wide {
     width: 80%;
     height: 100%;    
+  }
+  .daily-affairs {
+    flex-direction: column;
+    width:25%;
+    height: 100%;
+    .child {
+      width:100%;
+      height:60%;
+      border-bottom:1px solid white;
+    }
+    .child-thin {
+      height: 100%;
+    }
+    .inner-container {
+      width: 100%;
+      height: 40%;
+    }
   }
 }
 

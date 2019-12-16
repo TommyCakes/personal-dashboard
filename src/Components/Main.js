@@ -5,6 +5,7 @@ import Weather from './Weather';
 import Music from './Music/Music';
 import Twitch from './Twitch/Twitch';
 import TwitchSearch from './Twitch/TwitchSearch';
+import Stocks from './Stocks';
 
 const gamePlaceholder = {
     background: `url(${gameImg})`,
@@ -31,8 +32,18 @@ export default class Main extends Component {
         return (
             <div className="main-container">
                 {/* First row */}
-                <div className="tall">
-                    <Weather />
+                <div className="daily-affairs inner-container long-inner">
+                    <div className="child">
+                        <Weather />
+                    </div>
+                    <div className="inner-container">   
+                        <div className="child child-thin">
+                            <Stocks />
+                        </div>
+                        <div className="child child-thin">
+                            <Stocks />
+                        </div>
+                    </div>
                 </div>
 
                 <div className="inner-container">          
