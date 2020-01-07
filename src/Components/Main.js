@@ -36,14 +36,7 @@ export default class Main extends Component {
                     <div className="child">
                         <Weather />
                     </div>
-                    <div className="inner-container">   
-                        <div className="child child-thin">
-                            <Stocks />
-                        </div>
-                        <div className="child child-thin">
-                            <Stocks />
-                        </div>
-                    </div>
+                    <Stocks />
                 </div>
 
                 <div className="inner-container">          
